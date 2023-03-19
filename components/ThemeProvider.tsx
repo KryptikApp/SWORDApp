@@ -4,7 +4,7 @@ import { useKryptikTheme } from "../src/helpers/kryptikThemeHelper";
 import { IWallet } from "../src/models/KryptikWallet";
 
 const kryptikThemeContext = createContext({
-  isDark: true,
+  isDark: false,
   themeLoading: true,
   updateIsDark: (newIsDark: boolean, uid: string, persist?: boolean) => {},
   isAdvanced: false,

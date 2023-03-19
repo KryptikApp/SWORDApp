@@ -5,8 +5,6 @@ import matter from "gray-matter";
 import { DocType, DocTypeEnum } from "./types";
 import { getContributorById } from "./contributors";
 
-const docsDirectory = join(process.cwd(), "docs");
-const developerDocsDirectory = join(process.cwd(), "developerDocs");
 const blogDocsDirectory = join(process.cwd(), "blog");
 
 const defaultFields = [
@@ -29,16 +27,8 @@ export function getDocSlugs(docEnum: DocTypeEnum) {
       directory = blogDocsDirectory;
       break;
     }
-    case DocTypeEnum.DevDoc: {
-      directory = developerDocsDirectory;
-      break;
-    }
-    case DocTypeEnum.UserDoc: {
-      directory = docsDirectory;
-      break;
-    }
     default: {
-      directory = docsDirectory;
+      directory = blogDocsDirectory;
       break;
     }
   }
@@ -63,16 +53,8 @@ export function getDocBySlug(props: {
       directory = blogDocsDirectory;
       break;
     }
-    case DocTypeEnum.DevDoc: {
-      directory = developerDocsDirectory;
-      break;
-    }
-    case DocTypeEnum.UserDoc: {
-      directory = docsDirectory;
-      break;
-    }
     default: {
-      directory = docsDirectory;
+      directory = blogDocsDirectory;
       break;
     }
   }

@@ -19,7 +19,7 @@ export function useKryptikTheme() {
   const { authUser } = useKryptikAuthContext();
   const defaultTheme: ITheme = {
     isAdvanced: false,
-    isDark: true,
+    isDark: false,
     isVisible: false,
     hideBalances: false,
     lastUpdated: Date.now(),
@@ -33,7 +33,7 @@ export function useKryptikTheme() {
   }
 
   const generateThemeLocation = function (uid: string) {
-    let themeLocation = `kryptik|${uid}|theme`;
+    let themeLocation = `sword|${uid}|theme`;
     return themeLocation;
   };
 

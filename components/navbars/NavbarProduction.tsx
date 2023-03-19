@@ -41,8 +41,8 @@ const NavbarProduction: NextPage = () => {
         <div className="flex justify-between items-center hover:cursor-pointer">
           <div onClick={() => setMenuMobile(false)}>
             <Link href="/">
-              <span className="font-extrabold text-3xl text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-green-500 hover:outline-4 hover:outline-blue-400 dark:hover:text-white transition-colors duration-1500">
-                Kryptik
+              <span className="font-extrabold text-3xl text-gray-600 dark:text-gray-300 hover:text-sky-500 transition-colors duration-1500">
+                SWORD ⚔️
               </span>
             </Link>
           </div>
@@ -85,7 +85,7 @@ const NavbarProduction: NextPage = () => {
           )}
 
           <a href="#"></a>
-          {authUser ? (
+          {authUser && (
             <Link href="../profile">
               <span
                 className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
@@ -95,25 +95,15 @@ const NavbarProduction: NextPage = () => {
                 Profile
               </span>
             </Link>
-          ) : (
-            <Link href="../about">
-              <span
-                className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname == "/about" ? "font-bold" : ""
-                } `}
-              >
-                About
-              </span>
-            </Link>
           )}
           {!authUser && (
-            <Link href="../docs">
+            <Link href="../blog">
               <span
                 className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname.startsWith("/docs") ? "font-bold" : ""
+                  router.pathname.startsWith("/blog") ? "font-bold" : ""
                 } `}
               >
-                Learn
+                Articles
               </span>
             </Link>
           )}
@@ -131,7 +121,7 @@ const NavbarProduction: NextPage = () => {
           {authUser ? (
             <Link href="../gallery">
               <span
-                className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
+                className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
                   router.pathname == "/gallery" ? "font-bold" : ""
                 }`}
               >
@@ -139,13 +129,13 @@ const NavbarProduction: NextPage = () => {
               </span>
             </Link>
           ) : (
-            <Link href="../explore">
+            <Link href="../blog/sword">
               <span
-                className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
+                className={`p-2 lg:px-4 md:mx-2 text-gray-400 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
                   router.pathname == "/explore" ? "font-bold" : ""
                 }`}
               >
-                Explore
+                Research
               </span>
             </Link>
           )}
@@ -155,7 +145,7 @@ const NavbarProduction: NextPage = () => {
             walletStatus == WalletStatus.Connected ? (
               <Link href="../wallet/">
                 <span
-                  className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-green-400 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
+                  className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
                 >
                   Wallet{" "}
                   <img
@@ -168,7 +158,7 @@ const NavbarProduction: NextPage = () => {
             ) : (
               <Link href="../sync">
                 <span
-                  className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-green-400 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
+                  className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
                 >
                   Sync Wallet
                 </span>
@@ -177,9 +167,9 @@ const NavbarProduction: NextPage = () => {
           ) : (
             <Link href="../wallet/create">
               <span
-                className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-green-400 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
+                className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 hover:border-sky-300 dark:hover:border-sky-200 rounded-lg hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
               >
-                Connect
+                Live Demo
               </span>
             </Link>
           )}
