@@ -1,11 +1,8 @@
 import { NetworkDb, TokenDb } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { allPrices } from "../../../prisma/script";
-import {
-  PricesDict,
-  pricesDictFromPrices,
-} from "../../../src/helpers/coinGeckoHelper";
+import { PricesDict } from "../../../src/helpers/coinGeckoHelper";
+import { KryptikFetch } from "../../../src/kryptikFetch";
 
 type Data = {
   prices: PricesDict | null;
@@ -16,11 +13,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log("running get networks");
   // Get data submitted in request's body.
   try {
-    const prices = await allPrices();
-    const pricesDict: PricesDict = pricesDictFromPrices(prices);
+    const fetchRes = await KryptikFetch(
+      "https://www.kryptik.app/api/prices/all",
+      {
+        method: "GET",
+        timeout: 8000,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    const pricesDict: PricesDict | null | undefined = fetchRes.data.prices;
+    if (!pricesDict) throw new Error("Prices dictionary response undefined.");
     return res
       .status(200)
       .json({ prices: pricesDict, msg: "Prices have been updated." });
