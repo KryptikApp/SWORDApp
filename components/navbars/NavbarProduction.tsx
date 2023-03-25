@@ -33,26 +33,6 @@ const NavbarProduction: NextPage = () => {
   return (
     <Menu>
       {authUser && (
-        <div className="ml-2 md:ml-0 md:mr-2">
-          <MenuItem>
-            {hideBalances ? (
-              <RiEyeCloseLine
-                className="dark:text-white hover:cursor-pointer hover:animate-pulse"
-                size="28"
-                onClick={() => handleHideBalances(false)}
-              />
-            ) : (
-              <RiEyeLine
-                className="dark:text-white hover:cursor-pointer hover:animate-pulse"
-                size="28"
-                onClick={() => handleHideBalances(true)}
-              />
-            )}
-          </MenuItem>
-        </div>
-      )}
-
-      {authUser && (
         <MenuItem>
           <Link href="../profile/settings">
             <span
