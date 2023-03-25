@@ -7,6 +7,7 @@ import BrandLandingPage from "./landings/BrandLandingPage";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { defaultUser } from "../src/models/user";
+import AccountsCard from "./wallet/AccountsCard";
 
 const LandingPage: NextPage = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const LandingPage: NextPage = () => {
         {loadingAuthUser ||
         loadingWallet ||
         (authUser && authUser != defaultUser) ? (
-          <UserLandingPage />
+          <AccountsCard />
         ) : (
           <BrandLandingPage />
         )}

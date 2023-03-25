@@ -54,7 +54,7 @@ const NavbarProduction: NextPage = () => {
 
       {authUser && (
         <MenuItem>
-          <Link href="../profile">
+          <Link href="../profile/settings">
             <span
               className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
                 router.pathname == "/profile" ? "font-bold" : ""
@@ -78,32 +78,7 @@ const NavbarProduction: NextPage = () => {
           </Link>
         </MenuItem>
       )}
-      {authUser && (
-        <MenuItem>
-          <Link href="../explore">
-            <span
-              className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
-                router.pathname == "/explore" ? "font-bold" : ""
-              } `}
-            >
-              Explore
-            </span>
-          </Link>
-        </MenuItem>
-      )}
-      {authUser ? (
-        <MenuItem>
-          <Link href="../gallery">
-            <span
-              className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
-                router.pathname == "/gallery" ? "font-bold" : ""
-              }`}
-            >
-              Collect
-            </span>
-          </Link>
-        </MenuItem>
-      ) : (
+      {!authUser && (
         <MenuItem>
           <Link href="../blog/sword">
             <span
