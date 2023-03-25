@@ -24,7 +24,7 @@ export default function Layout(props: Props) {
   return (
     <div
       className={`min-h-screen ${themeLoading || isDark ? "dark" : ""} ${
-        themeLoading || isDark ? "bg-black" : "bg-white"
+        themeLoading || isDark ? "bg-black" : "bg-[#F2FBFE]"
       }`}
     >
       <Head>

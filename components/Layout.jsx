@@ -8,11 +8,7 @@ import { useState } from "react";
 export default function Layout({ children }) {
   const { isDark } = useKryptikThemeContext();
   return (
-    <div
-      className={`min-h-screen ${isDark ? "dark" : ""} ${
-        isDark ? "bg-[#0c0c0c]" : "bg-white"
-      }`}
-    >
+    <>
       <Head>
         <title>SWORD Demo</title>
         <meta
@@ -22,11 +18,16 @@ export default function Layout({ children }) {
         <link rel="icon" href="/pixelated sword icon.png" />
       </Head>
       <Toaster />
-
-      <main className={`px-4 mx-auto`}>
-        <Navbar></Navbar>
-        {children}
-      </main>
-    </div>
+      <div
+        className={`min-h-screen ${isDark ? "dark" : ""} ${
+          isDark ? "bg-[#0c0c0c]" : "bg-[#F2FBFE]"
+        }`}
+      >
+        <main className={`px-4`}>
+          <Navbar></Navbar>
+          {children}
+        </main>
+      </div>
+    </>
   );
 }

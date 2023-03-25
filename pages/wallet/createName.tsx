@@ -234,7 +234,7 @@ const CreateName: NextPage = () => {
           </label>
           <input
             maxLength={64}
-            className={`bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight font-semibold focus:outline-none focus:bg-white ${
+            className={`bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight font-semibold focus:outline-none focus:bg-[#F2FBFE] ${
               name.length >= 2
                 ? nameIsAvailable
                   ? "focus:border-green-400"

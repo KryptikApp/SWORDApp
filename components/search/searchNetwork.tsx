@@ -99,7 +99,7 @@ const SearchNetwork: NextPage = () => {
         </div>
 
         {searchresults.length != 0 && (
-          <div className="ml-[12%] relative z-10 max-h-80 my-2 rounded-xl px-2 py-2 bg-white text-slate-500 dark:bg-gray-700 dark:text-slate-200 divide-y divide-gray-200 dark:divide-gray-600 overflow-auto no-scrollbar">
+          <div className="ml-[12%] relative z-10 max-h-80 my-2 rounded-xl px-2 py-2 bg-[#F2FBFE] text-slate-500 dark:bg-gray-700 dark:text-slate-200 divide-y divide-gray-200 dark:divide-gray-600 overflow-auto no-scrollbar">
             {searchresults.length != 0 &&
               searchresults.map(
                 (searchResult: ISearchResult, index: number) => {
@@ -127,7 +127,7 @@ const SearchNetwork: NextPage = () => {
         onRequestClose={handleModalClose}
       >
         <div className="flex md:flex-row flex-col">
-          <div className="flex-1 text-left py-4 px-3 dark:text-white bg-white dark:bg-black md:ml-6 mt-8 md:mt-0 rounded-lg min-h-[30rem] md:min-h-[25rem] h-fit md:max-h-[40rem] dark:border dark:border-gray-100 md:overflow-x-hidden overflow-y-auto no-scrollbar">
+          <div className="flex-1 text-left py-4 px-3 dark:text-white bg-[#F2FBFE] dark:bg-black md:ml-6 mt-8 md:mt-0 rounded-lg min-h-[30rem] md:min-h-[25rem] h-fit md:max-h-[40rem] dark:border dark:border-gray-100 md:overflow-x-hidden overflow-y-auto no-scrollbar">
             <h1 className="text-3xl font-bold mb-2">What is this?</h1>
             <p>
               You are now choosing a blockchain to interact with. Blockchains
@@ -151,7 +151,7 @@ const SearchNetwork: NextPage = () => {
             </p>
           </div>
 
-          <div className="flex-1 pt-4 px-3 dark:text-white bg-white dark:bg-black md:ml-6 mt-8 md:mt-0 rounded-lg min-h-[30rem] md:min-h-[25rem] h-fit md:max-h-[40rem] dark:border dark:border-gray-100 md:overflow-x-hidden overflow-y-auto no-scrollbar">
+          <div className="flex-1 pt-4 px-3 dark:text-white bg-[#F2FBFE] dark:bg-black md:ml-6 mt-8 md:mt-0 rounded-lg min-h-[30rem] md:min-h-[25rem] h-fit md:max-h-[40rem] dark:border dark:border-gray-100 md:overflow-x-hidden overflow-y-auto no-scrollbar">
             <div className="flex">
               <div className="flex-1"></div>
               <h1 className="text-2xl font-bold">Change Network</h1>

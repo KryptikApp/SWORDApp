@@ -47,7 +47,7 @@ const Profile: NextPage = () => {
           </label>
           <input
             maxLength={12}
-            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:bg-[#141414] dark:text-white"
+            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:bg-[#141414] dark:text-white"
             id="inline-full-name"
             placeholder={authUser ? authUser.name : "Your Name"}
             value={name}
@@ -61,7 +61,7 @@ const Profile: NextPage = () => {
           </label>
           <input
             disabled
-            className="hover:cursor-not-allowed bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400 dark:bg-[#141414] dark:text-white disabled"
+            className="hover:cursor-not-allowed bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-blue-400 dark:bg-[#141414] dark:text-white disabled"
             id="inline-full-name"
             placeholder={authUser ? authUser.email : "your@email"}
           />
@@ -73,7 +73,7 @@ const Profile: NextPage = () => {
           </label>
           <textarea
             maxLength={150}
-            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400 dark:bg-[#141414] dark:text-white"
+            className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-blue-400 dark:bg-[#141414] dark:text-white"
             id="inline-bio"
             placeholder={authUser ? authUser.bio : "Your bio!"}
             value={bio}

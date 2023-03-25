@@ -10,17 +10,12 @@ import { useKryptikThemeContext } from "../ThemeProvider";
 import toast from "react-hot-toast";
 import { WalletStatus } from "../../src/models/KryptikWallet";
 import { getUserPhotoPath } from "../../src/helpers/auth";
+import Menu, { MenuItem } from "../menu/menu";
 
 const NavbarProduction: NextPage = () => {
-  const [isMenuMobile, setMenuMobile] = useState(false);
   const { authUser, walletStatus } = useKryptikAuthContext();
   const { hideBalances, updateHideBalances } = useKryptikThemeContext();
   const router = useRouter();
-
-  // change style based on boolean
-  const menuWrapperClassName = isMenuMobile
-    ? "flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0 min-h-[100vh] bg-white dark:bg-black md:min-h-0 text-2xl space-y-2"
-    : "hidden text-xl md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0";
 
   const handleHideBalances = function (isHideBalances: boolean) {
     if (!authUser) {
@@ -36,146 +31,132 @@ const NavbarProduction: NextPage = () => {
   };
 
   return (
-    <nav className="py-2 md:py-4">
-      <div className="md:px-4 mx-auto md:flex md:items-center">
-        <div className="flex justify-between items-center hover:cursor-pointer">
-          <div onClick={() => setMenuMobile(false)}>
-            <Link href="/">
-              <span className="font-extrabold text-3xl text-gray-600 dark:text-gray-300 hover:text-sky-500 transition-colors duration-1500">
-                SWORD ⚔️
-              </span>
-            </Link>
-          </div>
-          <button
-            id="nav-icon"
-            onClick={() => setMenuMobile(!isMenuMobile)}
-            type="button"
-            className={`inline-flex ${
-              isMenuMobile && "open"
-            } items-center mt-2 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600`}
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-          >
-            <span className="bg-gray-500 dark:bg-gray-400"></span>
-            <span className="bg-gray-500 dark:bg-gray-400"></span>
-            <span className="bg-gray-500 dark:bg-gray-400"></span>
-          </button>
-        </div>
-        <div
-          id="menu"
-          className={menuWrapperClassName}
-          onClick={() => setMenuMobile(false)}
-        >
-          {authUser && (
-            <div className="ml-2 md:ml-0 md:mr-2">
-              {hideBalances ? (
-                <RiEyeCloseLine
-                  className="dark:text-white hover:cursor-pointer hover:animate-pulse"
-                  size="28"
-                  onClick={() => handleHideBalances(false)}
-                />
-              ) : (
-                <RiEyeLine
-                  className="dark:text-white hover:cursor-pointer hover:animate-pulse"
-                  size="28"
-                  onClick={() => handleHideBalances(true)}
-                />
-              )}
-            </div>
-          )}
-
-          <a href="#"></a>
-          {authUser && (
-            <Link href="../profile">
-              <span
-                className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname == "/profile" ? "font-bold" : ""
-                } `}
-              >
-                Profile
-              </span>
-            </Link>
-          )}
-          {!authUser && (
-            <Link href="../blog">
-              <span
-                className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname.startsWith("/blog") ? "font-bold" : ""
-                } `}
-              >
-                Articles
-              </span>
-            </Link>
-          )}
-          {authUser && (
-            <Link href="../explore">
-              <span
-                className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname == "/explore" ? "font-bold" : ""
-                } `}
-              >
-                Explore
-              </span>
-            </Link>
-          )}
-          {authUser ? (
-            <Link href="../gallery">
-              <span
-                className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname == "/gallery" ? "font-bold" : ""
-                }`}
-              >
-                Collect
-              </span>
-            </Link>
-          ) : (
-            <Link href="../blog/sword">
-              <span
-                className={`p-2 lg:px-4 md:mx-2 text-gray-400 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
-                  router.pathname == "/explore" ? "font-bold" : ""
-                }`}
-              >
-                Research
-              </span>
-            </Link>
-          )}
-
-          {/* show disconnect button if connected and vise versa */}
-          {authUser ? (
-            walletStatus == WalletStatus.Connected ? (
-              <Link href="../wallet/">
-                <span
-                  className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
-                >
-                  Wallet{" "}
-                  <img
-                    src={getUserPhotoPath(authUser)}
-                    alt="Profile Image"
-                    className="inline object-cover w-5 h-5 rounded-full ml-2"
-                  />
-                </span>
-              </Link>
+    <Menu>
+      {authUser && (
+        <div className="ml-2 md:ml-0 md:mr-2">
+          <MenuItem>
+            {hideBalances ? (
+              <RiEyeCloseLine
+                className="dark:text-white hover:cursor-pointer hover:animate-pulse"
+                size="28"
+                onClick={() => handleHideBalances(false)}
+              />
             ) : (
-              <Link href="../sync">
-                <span
-                  className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
-                >
-                  Sync Wallet
-                </span>
-              </Link>
-            )
-          ) : (
-            <Link href="../wallet/create">
+              <RiEyeLine
+                className="dark:text-white hover:cursor-pointer hover:animate-pulse"
+                size="28"
+                onClick={() => handleHideBalances(true)}
+              />
+            )}
+          </MenuItem>
+        </div>
+      )}
+
+      {authUser && (
+        <MenuItem>
+          <Link href="../profile">
+            <span
+              className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
+                router.pathname == "/profile" ? "font-bold" : ""
+              } `}
+            >
+              Profile
+            </span>
+          </Link>
+        </MenuItem>
+      )}
+      {!authUser && (
+        <MenuItem>
+          <Link href="../blog">
+            <span
+              className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
+                router.pathname.startsWith("/blog") ? "font-bold" : ""
+              } `}
+            >
+              Articles
+            </span>
+          </Link>
+        </MenuItem>
+      )}
+      {authUser && (
+        <MenuItem>
+          <Link href="../explore">
+            <span
+              className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
+                router.pathname == "/explore" ? "font-bold" : ""
+              } `}
+            >
+              Explore
+            </span>
+          </Link>
+        </MenuItem>
+      )}
+      {authUser ? (
+        <MenuItem>
+          <Link href="../gallery">
+            <span
+              className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
+                router.pathname == "/gallery" ? "font-bold" : ""
+              }`}
+            >
+              Collect
+            </span>
+          </Link>
+        </MenuItem>
+      ) : (
+        <MenuItem>
+          <Link href="../blog/sword">
+            <span
+              className={`p-2 lg:px-4 md:mx-2 text-gray-400 md:text-center border border-transparent rounded hover:text-white hover:cursor-pointer hover:bg-sky-400 dark:hover:text-black transition-colors duration-300 ${
+                router.pathname == "/explore" ? "font-bold" : ""
+              }`}
+            >
+              Research
+            </span>
+          </Link>
+        </MenuItem>
+      )}
+
+      {/* show disconnect button if connected and vise versa */}
+      {authUser ? (
+        walletStatus == WalletStatus.Connected ? (
+          <MenuItem>
+            <Link href="../wallet/">
               <span
-                className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 hover:border-sky-300 dark:hover:border-sky-200 rounded-lg hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
+                className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
               >
-                Live Demo
+                Wallet{" "}
+                <img
+                  src={getUserPhotoPath(authUser)}
+                  alt="Profile Image"
+                  className="inline object-cover w-5 h-5 rounded-full ml-2"
+                />
               </span>
             </Link>
-          )}
-        </div>
-      </div>
-    </nav>
+          </MenuItem>
+        ) : (
+          <MenuItem>
+            <Link href="../sync">
+              <span
+                className={`p-2 lg:px-4 md:mx-2 text-green-400 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 dark:hover:border-sky-200 rounded hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
+              >
+                Sync Wallet
+              </span>
+            </Link>
+          </MenuItem>
+        )
+      ) : (
+        <MenuItem>
+          <Link href="../wallet/create">
+            <span
+              className={`p-2 lg:px-4 md:mx-2 text-sky-500 md:text-center md:border md:border-solid border-gray-300 dark:border-gray-600 hover:border-sky-300 dark:hover:border-sky-200 rounded-lg hover:bg-sky-500 hover:cursor-pointer hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1`}
+            >
+              Live Demo
+            </span>
+          </Link>
+        </MenuItem>
+      )}
+    </Menu>
   );
 };
 

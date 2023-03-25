@@ -87,7 +87,7 @@ const Security: NextPage = () => {
               disabled
               className={`${
                 !isVisible && "blur-sm"
-              } mb-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-400`}
+              } mb-4 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-blue-400`}
               value={getSeedPhrase(kryptikWallet) || ""}
             ></textarea>
             {isCopied ? (

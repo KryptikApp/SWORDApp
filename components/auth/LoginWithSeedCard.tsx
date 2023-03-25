@@ -143,7 +143,7 @@ const LoginWithSeedCard: NextPage = () => {
                 </p>
                 <input
                   type="password"
-                  className="mb-4 bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:focus:border-sky-500 text-2xl"
+                  className="mb-4 bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:focus:border-sky-500 text-2xl"
                   id="inline-full-name"
                   placeholder="Your seed"
                   required
@@ -151,7 +151,7 @@ const LoginWithSeedCard: NextPage = () => {
                 />
                 <input
                   type="email"
-                  className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:focus:border-sky-500 text-2xl"
+                  className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:focus:border-sky-500 text-2xl"
                   id="inline-full-name"
                   placeholder="Enter your email"
                   required

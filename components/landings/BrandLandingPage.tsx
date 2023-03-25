@@ -23,7 +23,7 @@ const BrandLandingPage: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div className="max-w-3xl mx-auto flex flex-col dark:text-white">
         <div className="mx-auto border rounded-xl p-2 mb-6 hover:bg-gray-100 dark:hover:bg-gray-900">
           <motion.div whileHover={{ scale: 1.2, rotateZ: 90 }}>
@@ -38,12 +38,12 @@ const BrandLandingPage: NextPage = () => {
         </div>
         <div className="text-center">
           <h3
-            className={`text-2xl ${pixelFont.className} font-bold sans text-gray-800 dark:text-gray-200`}
+            className={`text-xl md:text-2xl ${pixelFont.className} font-bold sans text-gray-800 dark:text-gray-200`}
           >
             SWORD Key Management
           </h3>
           <h1
-            className={`text-5xl mt-8 ${pixelFont.className} font-bold sans dark:text-white leading-normal`}
+            className={`text-3xl md:text-5xl mt-8 ${pixelFont.className} font-bold sans dark:text-white leading-normal`}
           >
             The Future of Online{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-br from-sky-400 via-sky-300 to-sky-500 background-animate">

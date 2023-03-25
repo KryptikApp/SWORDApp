@@ -64,7 +64,7 @@ const LockWalletDropdown: NextPage = () => {
   };
 
   return (
-    <div className="mt-8 bg-white dark:bg-black flex-col border rounded hover:cursor-pointer py-2 px-2">
+    <div className="mt-8 bg-[#F2FBFE] dark:bg-black flex-col border rounded hover:cursor-pointer py-2 px-2">
       <div
         className="flex flex-row py-2"
         onClick={() => handleLockDetailsClick()}
@@ -94,7 +94,7 @@ const LockWalletDropdown: NextPage = () => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 dark:border-gray-800 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:focus:border-sky-500 text-xl"
+                className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 dark:border-gray-800 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:focus:border-sky-500 text-xl"
                 id="inline-full-name"
                 placeholder="Enter your password"
                 required

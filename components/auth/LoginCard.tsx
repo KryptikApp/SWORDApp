@@ -101,14 +101,9 @@ const LoginCard: NextPage = () => {
 
   return (
     <div className="dark:text-white">
-      <div className="bg-[#FBFDFD] dark:bg-gradient-to-br dark:to-[#0d0d0d] dark:from-[#0c0c0c] max-w-md mx-auto rounded-lg border border-solid dark:border-gray-800 border-gray-100 hover:dark:border-green-400 drop-shadow dark:text-white pt-2 px-2 pb-10 min-h-[280px]">
+      <div className="bg-[#F2FBFE] dark:bg-gradient-to-br dark:to-[#0d0d0d] dark:from-[#0c0c0c] max-w-md mx-auto rounded-xl border border-solid dark:border-gray-800 border-gray-100 hover:border-green-400 hover:dark:border-green-400 drop-shadow dark:text-white pt-4 px-2 pb-12 min-h-[280px]">
         <div className="flex flex-row mt-1">
-          <div className="w-10 my-auto">
-            <img src="/kryptikBrand/kryptikEyez.png" className="rounded-full" />
-          </div>
-          <h2 className="font-bold text-md ml-2 mb-1 text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-green-500">
-            Kryptik
-          </h2>
+          <h2 className="font-bold text-sm ml-2 mb-1">SWORD ⚔️</h2>
         </div>
         <div className="flex-grow">
           <h1 className="text-3xl font-bold text-center mb-4">Welcome</h1>
@@ -129,7 +124,7 @@ const LoginCard: NextPage = () => {
                 </p>
                 <input
                   type="email"
-                  className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:focus:border-sky-500 text-2xl"
+                  className="bg-slate-200 dark:bg-slate-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:focus:border-sky-500 text-2xl"
                   id="inline-full-name"
                   placeholder="Enter your email"
                   required

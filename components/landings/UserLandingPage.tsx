@@ -221,7 +221,7 @@ const UserLandingPage: NextPage = () => {
                   <div className="flex flex-col">
                     <input
                       type="password"
-                      className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:focus:border-sky-500 text-xl"
+                      className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:focus:border-sky-500 text-xl"
                       id="inline-full-name"
                       placeholder="Enter your password"
                       required

@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Menu, { MenuItem } from "../menu/menu";
 
 // wallet SDK helpers
 import NavbarProduction from "./NavbarProduction";

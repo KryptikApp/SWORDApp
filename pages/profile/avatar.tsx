@@ -120,14 +120,14 @@ const Profile: NextPage = () => {
                     text-base
                     font-normal
                     text-gray-700
-                    bg-white bg-clip-padding
+                    bg-[#F2FBFE] bg-clip-padding
                     border border-solid border-gray-300
                     rounded
                     transition
                     hover:cursor-pointer
                     ease-in-out
                     m-0
-                    focus:text-gray-700 focus:bg-white focus:border-sky-600 focus:outline-none dark:bg-[#141414]"
+                    focus:text-gray-700 focus:bg-[#F2FBFE] focus:border-sky-600 focus:outline-none dark:bg-[#141414]"
             type="file"
             id="file"
             name="file"

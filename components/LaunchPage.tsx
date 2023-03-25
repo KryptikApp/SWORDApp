@@ -80,7 +80,7 @@ const LaunchPage: NextPage = () => {
                 <div className="flex md:w-[70%]  border border-green-600 mx-auto rounded">
                   <input
                     maxLength={40}
-                    className="w-[70%] bg-gray-200 appearance-none rounded py-4 px-4 text-gray-700 text-xl focus:outline-none focus:bg-white focus:border-sky-400 dark:bg-[#141414] dark:text-white"
+                    className="w-[70%] bg-gray-200 appearance-none rounded py-4 px-4 text-gray-700 text-xl focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:bg-[#141414] dark:text-white"
                     placeholder="joinwaitlist@gmail.com"
                     value={email}
                     onChange={(e) => handleUpdateEmail(e.target.value)}

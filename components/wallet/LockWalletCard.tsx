@@ -55,7 +55,7 @@ const LockWalletCard: NextPage = () => {
   return (
     <div
       id="lockWalletCard"
-      className="mx-2 border bg-white dark:bg-black rounded px-2 py-2 max-w-xl border-gray-400 dark:border-gray-500 hover:border-gray-600 hover:dark:border-gray-300"
+      className="mx-2 border bg-[#F2FBFE] dark:bg-black rounded px-2 py-2 max-w-xl border-gray-400 dark:border-gray-500 hover:border-gray-600 hover:dark:border-gray-300"
     >
       <div className="flex-col">
         <h2 className="text-2xl font-bold sans text-gray-900 dark:text-gray-100">
@@ -75,7 +75,7 @@ const LockWalletCard: NextPage = () => {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 dark:border-gray-800 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-white focus:border-sky-400 dark:focus:border-sky-500 text-xl"
+              className="bg-gray-200 dark:bg-gray-700 appearance-none border border-gray-200 dark:border-gray-800 rounded w-full py-3 px-4 text-gray-800 dark:text-white leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:border-sky-400 dark:focus:border-sky-500 text-xl"
               id="inline-full-name"
               placeholder="Enter your password"
               required

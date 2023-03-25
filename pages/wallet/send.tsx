@@ -709,7 +709,7 @@ const Send: NextPage = () => {
                   />
                 </button>
                 <input
-                  className="text-l bg-white appearance-none border-2 border-gray-400 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:dark:bg-[#141414] focus:border-blue-400 dark:bg-[#141414] dark:text-white"
+                  className="text-l bg-[#F2FBFE] appearance-none border-2 border-gray-400 rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-[#F2FBFE] focus:dark:bg-[#141414] focus:border-blue-400 dark:bg-[#141414] dark:text-white"
                   value={toAddress}
                   onChange={(e) => handleToAddressChange(e.target.value)}
                   id="inline-to"
