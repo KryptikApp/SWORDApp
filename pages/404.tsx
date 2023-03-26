@@ -20,7 +20,7 @@ const Custom404: NextPage = () => {
         <p className="text-lg dark:text-slate-500 text-slate-400">
           Whoops! You're in unexplored territory.
         </p>
-        <Link href="/explore">
+        <Link href="/">
           <p className="text-md dark:text-white hover:cursor-pointer dark:hover:text-sky-500 transition-colors duration-1500 mt-4">
             Keep exploring?
           </p>
