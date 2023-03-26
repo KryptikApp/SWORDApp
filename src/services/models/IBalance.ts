@@ -1,6 +1,5 @@
 import { formatTicker } from "../../helpers/utils/networkUtils";
 import { NetworkDb } from "./network";
-import { TokenAndNetwork } from "./token";
 
 export interface IBalance {
   fullName: string;
