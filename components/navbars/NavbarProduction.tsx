@@ -14,7 +14,7 @@ const NavbarProduction: NextPage = () => {
   return (
     <Menu>
       <MenuItem>
-        <Link href="../about">
+        <Link href="../guide">
           <span
             className={`p-2 lg:px-4 md:mx-2 text-gray-400 rounded hover:bg-gray-200 hover:cursor-pointer hover:text-gray-700 dark:hover:bg-gray-100 dark:hover:text-black transition-colors duration-300 ${
               router.pathname == "/about" ? "font-bold" : ""

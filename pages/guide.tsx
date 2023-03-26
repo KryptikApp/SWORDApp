@@ -3,13 +3,8 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import DocContent from "../components/docs/docContent";
 import DocHeader from "../components/docs/docHeader";
-import DocKeepReadingPreview from "../components/docs/docKeepReadingPreview";
 import EditThisPage from "../components/EditThisPage";
-import {
-  getDocBySlug,
-  getDocsByCategory,
-  getAllDocs,
-} from "../src/helpers/docs";
+import { getDocBySlug } from "../src/helpers/docs";
 import markdownToHtml from "../src/helpers/docs/markdownFormat";
 import { DocType, DocTypeEnum } from "../src/helpers/docs/types";
 import Custom404 from "./404";
