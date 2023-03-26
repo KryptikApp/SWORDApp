@@ -1,13 +1,7 @@
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  AiOutlineSetting,
-  AiOutlineUser,
-  AiOutlineLock,
-  AiOutlineWallet,
-  AiOutlineCamera,
-} from "react-icons/ai";
+import { AiOutlineSetting, AiOutlineLock } from "react-icons/ai";
 
 const NavProfile: NextPage = () => {
   const router = useRouter();
