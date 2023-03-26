@@ -107,7 +107,7 @@ export enum ColorEnum {
 export function createColorString(color: ColorEnum): string {
   switch (color) {
     case ColorEnum.blue: {
-      return "sky-400";
+      return "blue-400";
     }
     case ColorEnum.green: {
       return "green-500";
