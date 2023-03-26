@@ -1,8 +1,4 @@
 import type { NextPage } from "next";
-import toast, { Toaster } from "react-hot-toast";
-
-import Link from "next/link";
-import { useKryptikAuthContext } from "../../components/KryptikAuthProvider";
 
 const Offline: NextPage = () => {
   return (

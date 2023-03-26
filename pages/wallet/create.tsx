@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { Toaster } from "react-hot-toast";
 
 // kryptik imports
 import LoginCard from "../../components/auth/LoginCard";

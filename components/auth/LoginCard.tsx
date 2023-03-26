@@ -9,8 +9,9 @@ import LoadingSpinner from "../loadingSpinner";
 import { useKryptikThemeContext } from "../ThemeProvider";
 import { KryptikFetch } from "../../src/kryptikFetch";
 import Link from "next/link";
-import { isValidEmailAddress } from "../../src/helpers/resolvers/kryptikResolver";
+
 import { useKryptikAuthContext } from "../KryptikAuthProvider";
+import { isValidEmailAddress } from "../../src/helpers/resolvers/accountResolver";
 
 const LoginCard: NextPage = () => {
   const { signInWithToken } = useKryptikAuthContext();
@@ -142,13 +143,6 @@ const LoginCard: NextPage = () => {
                 <p className="text-gray-400 dark:text-gray-500 text-sm text-center">
                   If you already have an account, you will be logged in.
                 </p>
-              </div>
-              <div className="text-center max-w-2xl mx-auto content-center">
-                <Link href="../wallet/import">
-                  <span className="text-sky-300 dark:text-sky-600 hover:cursor-pointer hover:text-blue transition-colors duration-300">
-                    or import existing seed
-                  </span>
-                </Link>
               </div>
             </div>
           )}

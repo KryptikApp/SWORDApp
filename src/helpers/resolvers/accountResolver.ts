@@ -18,3 +18,9 @@ export const defaultResolvedAccount: IResolvedAccount = {
   address: "",
   isResolved: false,
 };
+
+export const isValidEmailAddress = function (email: string) {
+  /* Checks for anystring@anystring.anystring */
+  let re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
