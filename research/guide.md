@@ -8,15 +8,15 @@ contributorId: "jett"
 tags: ["developers", "tutorial"]
 ---
 
-Most wallets back up your seed phrase with a cloud provider like Google Drive or iCloud. However, while backups are encrypted, the encryption key is often a user-generated password. This system is insecure, given the widespread reuse of low-entropy passwords across the internet.
-
 **SWORD makes digital wallets more accessible and secure.** This short guide will help you integrate SWORD within your project.
 
 ## Key Idea
 
-Account management is distributed across a group of shareholders.
+SWORD provides passwordless authentication and account recovery. Instead of relying on trusted cloud backups, Kryptik distributes shares of an encryption key to a group of shareholders; k of n shares are required to reconstruct the original secret. The encryption key creates an encrypted version of the wallet.
 
-SWORD provides passwordless authentication and account recovery. Instead of relying on trusted cloud backups, Kryptik distributes shares of an encryption key to a group of shareholders; k of n shares are required to reconstruct the original secret. The encryption key creates an encrypted version of the wallet. Whenever a user wants to regain access to their wallet, the shares are reassembled, and the wallet is decrypted.
+Whenever a user wants to regain access to their wallet, the shares are reassembled, and the wallet is decrypted.
+
+> Account management is distributed across a group of shareholders.
 
 ## Favorable Properties
 
