@@ -55,7 +55,7 @@ const BrandLandingPage: NextPage = () => {
             to keep wallets secure. This makes it simple to provide delightful
             user experiences like passwordless authentication.
           </h1>
-          <Link href={"/blog/sword"}>
+          <Link href={"/research/sword"}>
             <div className="mt-4 text-2xl font-semibold text-center text-sky-500">
               <p className="inline">Read the full paper to learn more</p>
               <RiArrowRightCircleLine size={18} className="inline ml-2" />
