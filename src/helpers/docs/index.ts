@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { DocType, DocTypeEnum } from "./types";
 import { getContributorById } from "./contributors";
 
-const blogDocsDirectory = join(process.cwd(), "blog");
+const blogDocsDirectory = join(process.cwd(), "research");
 
 const defaultFields = [
   "slug",

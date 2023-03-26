@@ -7,7 +7,7 @@ import { Press_Start_2P } from "@next/font/google";
 import { useKryptikAuthContext } from "../../components/KryptikAuthProvider";
 import { useKryptikThemeContext } from "../ThemeProvider";
 import { motion } from "framer-motion";
-import { RiArrowDownCircleLine } from "react-icons/ri";
+import { RiArrowRightCircleLine } from "react-icons/ri";
 import Link from "next/link";
 
 const pixelFont = Press_Start_2P({ weight: "400", subsets: ["cyrillic"] });
@@ -58,7 +58,7 @@ const BrandLandingPage: NextPage = () => {
           <Link href={"/blog/sword"}>
             <div className="mt-4 text-2xl font-semibold text-center text-sky-500">
               <p className="inline">Read the full paper to learn more</p>
-              <RiArrowDownCircleLine size={18} className="inline ml-2" />
+              <RiArrowRightCircleLine size={18} className="inline ml-2" />
             </div>
           </Link>
         </div>

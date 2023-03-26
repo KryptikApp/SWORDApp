@@ -7,19 +7,16 @@ type Props = {
   doc: DocType;
 };
 
-const BlogFeature = ({ doc }: Props) => {
-  const urlBase = "/blog/[slug]";
-  const urlAs = `/blog/${doc.slug}`;
+const ResearchFeature = ({ doc }: Props) => {
+  const urlBase = "/research/[slug]";
+  const urlAs = `/research/${doc.slug}`;
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="max-w-3xl rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white py-6 px-4 outline outline-1 outline-slate-400 dark:outline-slate-700 hover:outline-2 hover:outline-green-400 hover:dark:outline-green-400">
+      <div className="max-w-3xl rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white py-6 px-4 outline outline-1 outline-slate-400 dark:outline-slate-700 hover:outline-2 hover:outline-blue-500 hover:dark:outline-blue-500">
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-col space-y-4">
             <div className="">
               <div className="flex flex-col space-y-2">
-                <p className="text-sky-500 text-lg font-semibold">
-                  {doc.category}
-                </p>
                 <Link as={urlAs} href={urlBase}>
                   <p className="text-3xl font-bold hover:cursor-pointer">
                     {doc.title}
@@ -69,4 +66,4 @@ const BlogFeature = ({ doc }: Props) => {
   );
 };
 
-export default BlogFeature;
+export default ResearchFeature;

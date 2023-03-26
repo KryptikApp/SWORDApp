@@ -25,7 +25,7 @@ export default function Post({ doc, recommendedDocs }: Props) {
     console.warn(`Unable to find this doc!`);
     return <Custom404 />;
   }
-  const githubLink: string = `https://github.com/KryptikApp/kryptikwebapp/blob/main/blog/${doc.slug}.md`;
+  const githubLink: string = `https://github.com/KryptikApp/kryptikwebapp/blob/main/research/${doc.slug}.md`;
   const readNext: DocType[] = recommendedDocs ? recommendedDocs : [];
   return (
     <div>
@@ -67,7 +67,7 @@ export default function Post({ doc, recommendedDocs }: Props) {
                 <div className="flex flex-col space-y-4">
                   {readNext.map((doc: DocType, index: number) => (
                     <DocKeepReadingPreview
-                      baseUrl="/blog/"
+                      baseUrl="/research/"
                       key={`keep reading preview ${index}`}
                       title={doc.title}
                       image={doc.image || undefined}

@@ -1,6 +1,6 @@
 import { getAllDocs } from "../../src/helpers/docs";
 import { DocType, DocTypeEnum } from "../../src/helpers/docs/types";
-import BlogFeature from "../../components/docs/blogFeature";
+import BlogFeature from "../../components/docs/researchFeature";
 import RecentDocCard from "../../components/docs/recentDocCard";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -17,9 +17,11 @@ export default function BlogHome({ allDocs }: Props) {
   // overriden to be 'sword' post
   const mostRecentDoc: DocType =
     allDocs.find((d) => d.slug.toLowerCase() == "sword") || allDocs[0];
-  // most recent docs that aren't the last posted doc
-  const freshDocs: DocType[] = allDocs.slice(1, 4);
-  const baseBlogUrl = "/blog/";
+  // most recent docs that aren't the last posted doc or SWORD doc
+  const freshDocs: DocType[] = allDocs
+    .filter((d) => d.slug.toLowerCase() != "sword")
+    .slice(1, 4);
+  const baseBlogUrl = "/research/";
 
   const [query, setQuery] = useState("");
   const [filteredDocs, setFilteredDocs] = useState<DocType[]>(allDocs);
@@ -64,7 +66,7 @@ export default function BlogHome({ allDocs }: Props) {
       <div className="">
         <div className="dark:text-white">
           <div className="max-w-3xl mx-auto mb-[5vh] md:mb-[10vh] text-left">
-            <p className="text-sky-400 text-lg mt-2 ml-2 mb-4 font-semibold">
+            <p className="text-blue-400 text-lg mt-2 ml-2 mb-4 font-semibold">
               Blog
             </p>
           </div>
@@ -72,8 +74,8 @@ export default function BlogHome({ allDocs }: Props) {
           <BlogFeature doc={mostRecentDoc} />
 
           <div className="max-w-3xl mx-auto">
-            <p className="text-sky-400 text-lg mt-10 mb-4 font-semibold">
-              Recent Thoughts
+            <p className="text-blue-400 text-lg mt-10 mb-4 font-semibold">
+              Recent
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8">
               {freshDocs.map((doc: DocType, index: number) => (
@@ -81,7 +83,7 @@ export default function BlogHome({ allDocs }: Props) {
               ))}
             </div>
             {/* searchbar */}
-            <div className="my-10 rounded-lg bg-gray-100 dark:bg-gray-900 border border-slate-200 hover:border-green-400 text-black dark-text-gray">
+            <div className="my-10 rounded-lg bg-gray-100 dark:bg-gray-900 border border-slate-200 hover:border-blue-400 text-black dark-text-gray">
               <div className="flex flex-row space-x-1">
                 <div className="my-auto font-semibold pl-2">
                   <AiOutlineSearch
@@ -104,11 +106,11 @@ export default function BlogHome({ allDocs }: Props) {
             </div>
             <div className="mb-2" onClick={() => setShowAll(!showAll)}>
               {showAll ? (
-                <p className="text-sky-400 text-right text-lg mt-4 font-semibold hover:cursor-pointer">
+                <p className="text-blue-400 text-right text-lg mt-4 font-semibold hover:cursor-pointer">
                   Hide All
                 </p>
               ) : (
-                <p className="text-sky-400 text-right text-lg mt-4 font-semibold hover:cursor-pointer">
+                <p className="text-blue-400 text-right text-lg mt-4 font-semibold hover:cursor-pointer">
                   See All
                 </p>
               )}
