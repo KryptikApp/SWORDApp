@@ -23,7 +23,7 @@ export async function sendEmailCode(
   const msg = {
     to: email,
     from: fromEmail || "",
-    templateId: "d-6a860cc7ed4a40cf9694322253a4ff3e",
+    templateId: "d-8d0795ac83384b28bdccf0bc1cd2515f",
     dynamic_template_data: {
       code: code,
     },
