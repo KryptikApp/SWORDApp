@@ -1,8 +1,5 @@
 import { NextPage } from "next";
-import { ColorEnum } from "../../src/helpers/utils";
 import { roundToDecimals } from "../../src/helpers/utils/numberUtils";
-import Button from "../buttons/Button";
-import LoadingSpinner from "../loadingSpinner";
 
 type Props = {
   children: any;
@@ -25,16 +22,9 @@ const SyncCard: NextPage<Props> = (props) => {
     ...props,
   };
   return (
-    <div className="m-4 max-w-lg max-h-screen dark:text-white border border-sky-300 pt-8 pb-10 mx-auto my-auto px-4 rounded rounded-lg bg-gray-50 dark:bg-gray-900 hover:border-sky-400 dark:hover:border-sky-400">
+    <div className="m-4 max-w-lg max-h-screen dark:text-white border border-sky-300 pt-8 pb-10 mx-auto my-auto px-4 rounded rounded-lg bg-[#E5F6FE] dark:bg-gray-900 hover:border-sky-400 dark:hover:border-sky-400">
       <div className="flex flex-row">
-        <h1 className="text-4xl font-bold mb-2">
-          Sync
-          <img
-            src="/kryptikBrand/kryptikEyez.png"
-            alt="Kryptik Eyes"
-            className="rounded-full w-10 ml-2 inline max-h-sm h-auto align-middle border-none"
-          />
-        </h1>
+        <h1 className="text-4xl font-bold mb-2">Sync</h1>
         {/* {isLoading && (
           <div className="flex-grow">
             <div className="float-right">

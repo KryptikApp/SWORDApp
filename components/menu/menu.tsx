@@ -6,8 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 // wallet SDK helpers
 import { useKryptikAuthContext } from "../KryptikAuthProvider";
-import { useKryptikThemeContext } from "../ThemeProvider";
-import toast from "react-hot-toast";
 
 type Props = {
   children: any;
@@ -16,33 +14,18 @@ type Props = {
 const Menu: NextPage<Props> = (props) => {
   const [isMenuMobile, setMenuMobile] = useState(false);
   const { authUser, walletStatus } = useKryptikAuthContext();
-  const { hideBalances, updateHideBalances } = useKryptikThemeContext();
   const [windowSize, setWindowSize] = useState({
     width: 0,
     height: 0,
   });
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const router = useRouter();
   const { children } = { ...props };
 
   // change style based on boolean
   const menuWrapperClassName = isMenuMobile
     ? "flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0 min-h-[80vh] rounded-lg bg-[#F2FBFE] z-10 border-sky-500 border bg-gray-50 py-4 pl-4 dark:bg-black md:min-h-0 text-2xl space-y-2"
     : "hidden text-xl md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0";
-
-  const handleHideBalances = function (isHideBalances: boolean) {
-    if (!authUser) {
-      toast.error("Please login before updating your preferences");
-      return;
-    }
-    updateHideBalances(isHideBalances, authUser.uid);
-    if (isHideBalances) {
-      toast("Your balances will now be hidden while browsing");
-    } else {
-      toast("Your balances will now be visible while browsing");
-    }
-  };
 
   useEffect(() => {
     // Handler to call on window resize
@@ -64,7 +47,7 @@ const Menu: NextPage<Props> = (props) => {
   }, []);
 
   return (
-    <nav className="py-2 md:py-4">
+    <nav className="py-2 md:py-4 mb-4 px-2">
       <div className="md:px-4 mx-auto md:flex md:items-center">
         <div className="flex justify-between items-center hover:cursor-pointer">
           <div onClick={() => setMenuMobile(false)}>

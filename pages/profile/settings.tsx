@@ -12,14 +12,7 @@ import { WalletStatus } from "../../src/models/KryptikWallet";
 
 const Settings: NextPage = () => {
   const { authUser, signOut, kryptikWallet } = useKryptikAuthContext();
-  const {
-    updateIsDark,
-    isDark,
-    updateIsAdvanced,
-    isAdvanced,
-    isVisible,
-    updateIsVisible,
-  } = useKryptikThemeContext();
+  const { updateIsDark, isDark } = useKryptikThemeContext();
   const [updateVisibleLoading, setUpdateVisibleLoading] = useState(false);
   const router = useRouter();
 
@@ -29,50 +22,6 @@ const Settings: NextPage = () => {
       router.push("/");
     } catch (e) {
       toast.error("Unable to sign out. Please contact support.");
-    }
-  };
-
-  const handleUpdateWalletVisibility = async function () {
-    if (!authUser) {
-      toast.error("Please login before updating your preferences");
-      return;
-    }
-    if (
-      kryptikWallet.status == WalletStatus.OutOfSync ||
-      kryptikWallet.status == WalletStatus.Disconected
-    ) {
-      toast.error("Please sync wallet before updating your preferences");
-      return;
-    }
-    if (kryptikWallet.status == WalletStatus.Locked) {
-      toast.error("Please unlock wallet before updating your preferences");
-      return;
-    }
-    setUpdateVisibleLoading(true);
-    try {
-      await updateIsVisible(!isVisible, authUser.uid, kryptikWallet);
-      if (!isVisible) {
-        toast.success("Your wallet is now visible");
-      } else {
-        toast.success("Your wallet is now private");
-      }
-    } catch (e) {
-      console.log(e);
-      toast.error("Unable to update wallet visiblity");
-    }
-    setUpdateVisibleLoading(false);
-  };
-
-  const handleUpdateIsAdvanced = function (newIsAdvanced: boolean) {
-    if (!authUser) {
-      toast.error("Please login before updating your preferences");
-      return;
-    }
-    updateIsAdvanced(newIsAdvanced, authUser.uid);
-    if (newIsAdvanced) {
-      toast.success("Advanced mode activated!");
-    } else {
-      toast.success("Profile updated!");
     }
   };
 
@@ -162,14 +111,6 @@ const Settings: NextPage = () => {
         <Link href="../wallet/delete">
           <p className="text-red-500 mb-4 text-sm hover:cursor-pointer">
             Delete Wallet
-          </p>
-        </Link>
-        <Link href="../support/privacy">
-          <p className="text-sky-500 text-sm hover:cursor-pointer">Privacy</p>
-        </Link>
-        <Link href="../support/terms">
-          <p className="text-sky-500 text-sm hover:cursor-pointer">
-            Terms of Use
           </p>
         </Link>
       </div>

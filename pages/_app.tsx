@@ -4,9 +4,7 @@ import Layout from "../components/Layout";
 import { KryptikAuthProvider } from "../components/KryptikAuthProvider";
 import { KryptikThemeProvider } from "../components/ThemeProvider";
 import { useEffect } from "react";
-import LayoutDevDocs from "../components/LayoutDevDocs";
 import "highlight.js/styles/github-dark-dimmed.css";
-import ConnectModal from "../components/connect/ConnectModal";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const handleOffline = function () {
@@ -26,29 +24,15 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     // on page load... add offline handler to DOM
     addOfflineHandler();
   }, []);
-
-  if (router.pathname.startsWith("/developer")) {
-    return (
-      <KryptikAuthProvider>
-        <KryptikThemeProvider>
-          <LayoutDevDocs>
-            <Component {...pageProps} />
-          </LayoutDevDocs>
-        </KryptikThemeProvider>
-      </KryptikAuthProvider>
-    );
-  } else {
-    return (
-      <KryptikAuthProvider>
-        <KryptikThemeProvider>
-          <Layout>
-            <Component {...pageProps} />
-            <ConnectModal />
-          </Layout>
-        </KryptikThemeProvider>
-      </KryptikAuthProvider>
-    );
-  }
+  return (
+    <KryptikAuthProvider>
+      <KryptikThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </KryptikThemeProvider>
+    </KryptikAuthProvider>
+  );
 }
 
 export default MyApp;

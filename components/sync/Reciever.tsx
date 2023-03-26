@@ -14,9 +14,9 @@ import { ColorEnum } from "../../src/helpers/utils";
 import { WalletStatus } from "../../src/models/KryptikWallet";
 import ButtonSync from "../buttons/ButtonSync";
 import { useKryptikAuthContext } from "../KryptikAuthProvider";
-import KryptikScanner from "../kryptikScanner";
 import SyncCard from "./SyncCard";
 import { createHashCode } from "../../src/handlers/crypto";
+import KryptikScanner from "../kryptikScanner";
 
 enum EnumProgress {
   Start = 0,

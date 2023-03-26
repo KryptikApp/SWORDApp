@@ -2,11 +2,6 @@ import { defaultNetworks } from "hdseedloop";
 import { useEffect, useState } from "react";
 import { useKryptikAuthContext } from "../../components/KryptikAuthProvider";
 import { IWallet } from "../models/KryptikWallet";
-import {
-  addUserBlockchainAccountDB,
-  BlockchainAccountDb,
-  deleteUserBlockchainAccountDB,
-} from "./accounts";
 import { getAddressForNetwork } from "./utils/accountUtils";
 
 export function useKryptikTheme() {
@@ -82,82 +77,6 @@ export function useKryptikTheme() {
     }
   };
 
-  const updateIsVisible = async function (
-    newIsVisible: boolean,
-    uid: string,
-    wallet: IWallet
-  ) {
-    let newTheme: ITheme = {
-      isAdvanced: isAdvanced,
-      isDark: isDark,
-      isVisible: newIsVisible,
-      hideBalances: hideBalances,
-      lastUpdated: Date.now(),
-    };
-    let success: boolean = false;
-    if (newIsVisible) {
-      let blockchainAccounts: BlockchainAccountDb = {
-        evmAddress: "",
-        nearAddress: "",
-        solAddress: "",
-      };
-      // PERPETUAL TODO: UPDATE WHEN NETWORK WITH DIFFERENT NETWORK FAMILY IS ADDED
-      const solNetwork = defaultNetworks["sol"];
-      const ethNetwork = defaultNetworks["eth"];
-      const nearNetwork = defaultNetworks["near"];
-      const solAddy = getAddressForNetwork(wallet, solNetwork);
-      const ethAddy = getAddressForNetwork(wallet, ethNetwork);
-      const nearAddy = getAddressForNetwork(wallet, nearNetwork);
-      // add data to ticker-addy dictionary
-      blockchainAccounts.solAddress = solAddy;
-      blockchainAccounts.evmAddress = ethAddy;
-      blockchainAccounts.nearAddress = nearAddy;
-      console.log("adding addys to remote...");
-      success = await addUserBlockchainAccountDB(blockchainAccounts);
-      console.log("----");
-    } else {
-      success = await deleteUserBlockchainAccountDB();
-    }
-    if (success) {
-      // update app state
-      setIsVisible(newIsVisible);
-      // update stored theme
-      updateTheme(newTheme, uid);
-    } else {
-      throw new Error("Unable to add blockchain accounts");
-    }
-  };
-
-  const updateIsAdvanced = function (newIsAdvanced: boolean, uid: string) {
-    console.log("updating is advanced...");
-    let newTheme: ITheme = {
-      isAdvanced: newIsAdvanced,
-      isDark: isDark,
-      isVisible: isVisible,
-      hideBalances: hideBalances,
-      lastUpdated: Date.now(),
-    };
-    // update app state
-    setIsAdvanced(newIsAdvanced);
-    // update stored theme
-    updateTheme(newTheme, uid);
-  };
-
-  const updateHideBalances = function (newHideBalances: boolean, uid: string) {
-    console.log("updating hide balances...");
-    let newTheme: ITheme = {
-      isAdvanced: isAdvanced,
-      isDark: isDark,
-      isVisible: isVisible,
-      hideBalances: newHideBalances,
-      lastUpdated: Date.now(),
-    };
-    // update app state
-    setHideBalances(newHideBalances);
-    // update stored theme
-    updateTheme(newTheme, uid);
-  };
-
   // updates local storage theme value
   const updateTheme = function (newTheme: ITheme, uid: string) {
     let themeLocation = generateThemeLocation(uid);
@@ -184,12 +103,6 @@ export function useKryptikTheme() {
   return {
     isDark,
     updateIsDark,
-    isAdvanced,
-    updateIsAdvanced,
-    isVisible,
-    updateIsVisible,
-    hideBalances,
-    updateHideBalances,
     themeLoading,
   };
 }

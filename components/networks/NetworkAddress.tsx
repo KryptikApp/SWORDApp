@@ -1,10 +1,10 @@
 import { NetworkDb } from "@prisma/client";
-import { formatAddress, Network, truncateAddress } from "hdseedloop";
+import { Network, truncateAddress } from "hdseedloop";
 import { NextPage } from "next";
-import { ColorEnum } from "../../src/helpers/utils";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { AiOutlineCopy } from "react-icons/ai";
 import { networkFromNetworkDb } from "../../src/helpers/utils/networkUtils";
-import Button from "../buttons/Button";
-import Divider from "../Divider";
 import { useKryptikAuthContext } from "../KryptikAuthProvider";
 
 type Props = {
@@ -17,6 +17,16 @@ const NetworkAddress: NextPage<Props> = (props) => {
   const network: Network = networkFromNetworkDb(networkDb);
   const address = kryptikWallet.seedLoop.getAddresses(network)[0];
   const readableAddress = truncateAddress(address, network);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleIsCopiedToggle = function () {
+    navigator.clipboard.writeText(address);
+    if (!isCopied) {
+      // update copy state
+      setIsCopied(true);
+    }
+    toast.success("Address copied.");
+  };
 
   return (
     <div
@@ -41,12 +51,23 @@ const NetworkAddress: NextPage<Props> = (props) => {
             />
           </div>
           <div className="flex flex-col">
-            <p className="text-2xl font-semibold text-center">
-              {networkDb.fullName}
-            </p>
-            <p className="text-slate-700 dark:text-slate-200 text-lg">
+            <p className="text-xl font-semibold">{networkDb.fullName}</p>
+            <p className="text-slate-600 dark:text-slate-300 text-md">
               {readableAddress}
             </p>
+          </div>
+          <div className="flex-grow">
+            <div className="flex flex-row flex-row-reverse">
+              <div
+                className="p-2 rounded-lg border border-1 w-fit mt-2 bg-white bg-opacity-20 hover:cursor-pointer"
+                style={{
+                  borderColor: networkDb.hexColor,
+                }}
+                onClick={handleIsCopiedToggle}
+              >
+                <AiOutlineCopy size={20} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

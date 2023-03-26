@@ -3,7 +3,6 @@ import {
   IAccountResolverParams,
   IResolvedAccount,
 } from "../helpers/resolvers/accountResolver";
-import { resolveEVMAccount } from "../helpers/resolvers/evmResolver";
 import { defaultNetworkDb } from "../services/models/network";
 import { KryptikProvider } from "../services/models/provider";
 
@@ -49,21 +48,5 @@ export class IWallet {
     this.seedLoop = seedLoop;
     this.resolvedEthAccount = resolvedEthAccount;
     this.uid = uid;
-  }
-
-  // tries to resolve eth account if niot yet resolved
-  async getResolvedAccount(kryptikProvider: KryptikProvider) {
-    if (this.resolvedEthAccount.isResolved) return this.resolvedEthAccount;
-    // note default networkdb should be eth
-    let resolverParams: IAccountResolverParams = {
-      account: this.resolvedEthAccount.address,
-      kryptikProvider: kryptikProvider,
-      networkDB: defaultNetworkDb,
-    };
-    let newResolvedAccount: IResolvedAccount | null = await resolveEVMAccount(
-      resolverParams
-    );
-    if (!newResolvedAccount) return this.resolvedEthAccount;
-    return newResolvedAccount;
   }
 }

@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
-import { Toaster } from "react-hot-toast";
 
 import { useKryptikAuthContext } from "../components/KryptikAuthProvider";
-import UserLandingPage from "./landings/UserLandingPage";
 import BrandLandingPage from "./landings/BrandLandingPage";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -21,10 +19,6 @@ const LandingPage: NextPage = () => {
 
   return (
     <div>
-      <div className="h-[10vh]">
-        {/* padding div for space between top and main elements */}
-      </div>
-
       <div className="dark:text-white">
         {loadingAuthUser ||
         loadingWallet ||
@@ -33,9 +27,6 @@ const LandingPage: NextPage = () => {
         ) : (
           <BrandLandingPage />
         )}
-      </div>
-      <div className="h-[10rem]">
-        {/* padding div for space between top and main elements */}
       </div>
     </div>
   );

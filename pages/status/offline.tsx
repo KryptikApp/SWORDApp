@@ -13,7 +13,7 @@ const Offline: NextPage = () => {
 
       <div className="text-center max-w-2xl mx-auto content-center">
         <h1 className="text-5xl font-bold sans dark:text-white">
-          Kryptik App Requires An Internet Connection!
+          SWORD example Requires An Internet Connection!
         </h1>
       </div>
       <div className="h-[10rem]">

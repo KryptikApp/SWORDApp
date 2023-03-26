@@ -22,11 +22,8 @@ import {
 import { IWallet } from "../models/KryptikWallet";
 import { searchTokenListByTicker } from "../handlers/search/token";
 import { IWeb3Service } from "./models/IWeb3Service";
-import { getPriceOfTicker, PricesDict } from "../helpers/coinGeckoHelper";
-import { KryptikBalanceHolder } from "./models/KryptikBalanceHolder";
 import { EVM_NULL_ADDRESS } from "../constants/evmConstants";
-import { KryptikPriceHolder } from "./models/KryptikPriceHolder";
-import { fetchNetworks, fetchTokens, getAllPrices } from "../helpers/assets";
+import { fetchNetworks, fetchTokens } from "../helpers/assets";
 import { TokenContract } from "@prisma/client";
 
 export interface IConnectWalletReturn {
@@ -49,10 +46,6 @@ class Web3Service extends BaseService implements IWeb3Service {
     null as unknown as StaticJsonRpcProvider;
   //providers for each network
   public networkProviders: { [ticker: string]: KryptikProvider } = {};
-  // kryptik balances cache
-  public kryptikBalances: KryptikBalanceHolder = new KryptikBalanceHolder({});
-  // kryptik prices cache
-  public kryptikPrices: KryptikPriceHolder | null = null;
 
   constructor() {
     super();
@@ -64,8 +57,6 @@ class Web3Service extends BaseService implements IWeb3Service {
     console.log("Internal start service: KryptiK Web3");
     console.log("Service Id:");
     console.log(this.serviceId);
-    // get all token prices
-    this.getAllSupportedPrices();
     // fetch network data
     try {
       await this.populateNetworkDbsAsync();
@@ -86,11 +77,6 @@ class Web3Service extends BaseService implements IWeb3Service {
     }
     this.setRpcEndpoints();
     this.setSupportedProviders();
-    try {
-      await this.getAllSupportedPrices();
-    } catch {
-      console.warn("Unable to get prices when starting web3 service");
-    }
     return this;
   }
 
@@ -360,36 +346,6 @@ class Web3Service extends BaseService implements IWeb3Service {
       return newTokenAndNetwork;
     }
     return { baseNetworkDb: networkDb };
-  }
-
-  private async getAllSupportedPrices() {
-    let ids: string[] = [];
-    for (const nw of this.NetworkDbs) {
-      ids.push(nw.coingeckoId);
-    }
-    for (const token of this.tokenDbs) {
-      ids.push(token.coingeckoId);
-    }
-    let priceResponse: PricesDict | null = await getAllPrices();
-    if (!priceResponse) throw new Error("Unable to get prices from db.");
-    if (!this.kryptikPrices) {
-      const newPriceHolder: KryptikPriceHolder = new KryptikPriceHolder({
-        prices: priceResponse,
-      });
-      this.kryptikPrices = newPriceHolder;
-    } else {
-      this.kryptikPrices.updatePrices(priceResponse);
-    }
-    return this.kryptikPrices;
-  }
-
-  // TODO: add beter secondary handler if price holder not available
-  async getTokenPrice(tokenId: string): Promise<number> {
-    const cachedPrice = this.kryptikPrices
-      ? this.kryptikPrices.getPriceById(tokenId)
-      : null;
-    let priceUSD = cachedPrice || getPriceOfTicker(tokenId);
-    return priceUSD;
   }
 }
 

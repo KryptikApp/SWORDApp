@@ -1,22 +1,11 @@
 import { createContext, useContext } from "react";
 
 import { useKryptikTheme } from "../src/helpers/kryptikThemeHelper";
-import { IWallet } from "../src/models/KryptikWallet";
 
 const kryptikThemeContext = createContext({
   isDark: false,
   themeLoading: true,
   updateIsDark: (newIsDark: boolean, uid: string, persist?: boolean) => {},
-  isAdvanced: false,
-  updateIsAdvanced: (newIsAdvanced: boolean, uid: string) => {},
-  isVisible: false,
-  updateIsVisible: async (
-    newIsVisible: boolean,
-    uid: string,
-    wallet: IWallet
-  ) => {},
-  hideBalances: false,
-  updateHideBalances: (newHideBalances: boolean, uid: string) => {},
 });
 
 export function KryptikThemeProvider(props: any) {

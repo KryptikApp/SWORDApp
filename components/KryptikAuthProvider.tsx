@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import SignClient from "@walletconnect/sign-client";
 
 import { defaultWallet } from "../src/models/defaultWallet";
 import { UserDB } from "../src/models/user";
@@ -26,9 +25,7 @@ interface IAuthContext {
   updateWalletStatus: (newStatus: WalletStatus) => void;
   updateWallet: (seedloop: HDSeedLoop) => void;
   refreshUserAndWallet: () => void;
-  refreshBalances: (wallet?: IWallet) => void;
   signOut: () => void;
-  signClient: SignClient | null;
 }
 
 const kryptikAuthContext = createContext<IAuthContext>({
@@ -45,10 +42,8 @@ const kryptikAuthContext = createContext<IAuthContext>({
     isRefresh?: boolean
   ) => true,
   updateCurrentUserKryptik: async (user: UserDB) => {},
-  signClient: null,
   signOut: () => {},
   refreshUserAndWallet: () => {},
-  refreshBalances: (wallet?: IWallet) => {},
   walletStatus: defaultWallet.status,
   updateWalletStatus: (newStatus: WalletStatus) => {},
   updateWallet: (seedloop: HDSeedLoop) => {},

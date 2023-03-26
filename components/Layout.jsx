@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useKryptikThemeContext } from "./ThemeProvider";
 import Navbar from "./navbars/Navbar";
 import { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import AccountsCard from "./wallet/AccountsCard";
 
 // TODO: Update to support dynamic headers
 export default function Layout({ children }) {
@@ -18,16 +18,16 @@ export default function Layout({ children }) {
         <link rel="icon" href="/pixelated sword icon.png" />
       </Head>
       <Toaster />
-      <div
+
+      <main
         className={`min-h-screen ${isDark ? "dark" : ""} ${
           isDark ? "bg-[#0c0c0c]" : "bg-[#F2FBFE]"
-        }`}
+        } px-4`}
       >
-        <main className={`px-4`}>
-          <Navbar></Navbar>
-          {children}
-        </main>
-      </div>
+        <Navbar />
+        {children}
+        <div className="min-h-[10vh] md:min-h-0"></div>
+      </main>
     </>
   );
 }
