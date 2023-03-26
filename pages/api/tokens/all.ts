@@ -1,4 +1,3 @@
-import { TokenDb } from "@prisma/client";
 import {
   dbToClientToken,
   TokenDb as TokenDbClient,
