@@ -121,7 +121,7 @@ const LoginCard: NextPage = () => {
             <div className="px-6">
               <div className="flex flex-col mb-4">
                 <p className="text-gray-700 dark:text-gray-400 text-lg font-semibold mb-4">
-                  Create your secure, Web3 wallet in one click.
+                  Create your demo wallet in one click.
                 </p>
                 <input
                   type="email"
