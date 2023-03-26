@@ -20,7 +20,6 @@ import {
   getContractByNetwork,
 } from "../helpers/utils/networkUtils";
 import { IWallet } from "../models/KryptikWallet";
-import { searchTokenListByTicker } from "../handlers/search/token";
 import { IWeb3Service } from "./models/IWeb3Service";
 import { EVM_NULL_ADDRESS } from "../constants/evmConstants";
 import { fetchNetworks, fetchTokens } from "../helpers/assets";
@@ -298,55 +297,6 @@ class Web3Service extends BaseService implements IWeb3Service {
     let contractConnected = erc20Contract.connect(ethProvider);
     return contractConnected;
   };
-
-  // TODO: UPDATE TO FILTER ON FAMILY
-  getTokenAndNetworkFromTickers(
-    networkTicker: string,
-    tokenTicker?: string
-  ): TokenAndNetwork {
-    let networkDb: NetworkDb | null = this.getNetworkDbByTicker(networkTicker);
-    // UPDATE TO THROW ERROR OR RETURN NULL?
-    if (!networkDb) return defaultTokenAndNetwork;
-    // no token... just return obj with base network
-    if (!tokenTicker) return { baseNetworkDb: networkDb };
-    let networkFamily = NetworkFamilyFromFamilyName(
-      networkDb.networkFamilyName
-    );
-    let tokenDb: TokenDb | null = null;
-    switch (networkFamily) {
-      case NetworkFamily.EVM: {
-        tokenDb = searchTokenListByTicker(this.tokenDbs, tokenTicker);
-        break;
-      }
-      case NetworkFamily.Near: {
-        tokenDb = searchTokenListByTicker(this.tokenDbs, tokenTicker);
-        break;
-      }
-      case NetworkFamily.Solana: {
-        tokenDb = searchTokenListByTicker(this.tokenDbs, tokenTicker);
-        break;
-      }
-      default: {
-        tokenDb = null;
-      }
-    }
-    // set token data if it exists
-    if (tokenDb) {
-      const contract: TokenContract | null = getContractByNetwork(
-        networkDb,
-        tokenDb
-      );
-      let newTokenAndNetwork: TokenAndNetwork = {
-        baseNetworkDb: networkDb,
-        tokenData: {
-          tokenDb: tokenDb,
-          selectedAddress: contract ? contract.address : EVM_NULL_ADDRESS,
-        },
-      };
-      return newTokenAndNetwork;
-    }
-    return { baseNetworkDb: networkDb };
-  }
 }
 
 export default Web3Service;

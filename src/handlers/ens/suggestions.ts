@@ -1,4 +1,3 @@
-import { isEmpty } from "lodash";
 import { IResolvedAccount } from "../../helpers/resolvers/accountResolver";
 import { ensClient } from "../../theGraph/client";
 import { ENS_SUGGESTIONS } from "../../theGraph/queries";
