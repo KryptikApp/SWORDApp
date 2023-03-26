@@ -5,7 +5,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { updateVaultSeedloop } from "../../src/handlers/wallet/vaultHandler";
 import { getRemoteShare } from "../../src/helpers/shares";
 import { WalletStatus } from "../../src/models/KryptikWallet";
-import { UserExtraData } from "../../src/models/user";
 import { useKryptikAuthContext } from "../KryptikAuthProvider";
 
 const LockWalletCard: NextPage = () => {
@@ -55,7 +54,7 @@ const LockWalletCard: NextPage = () => {
   return (
     <div
       id="lockWalletCard"
-      className="mx-2 border bg-[#F2FBFE] dark:bg-black rounded px-2 py-2 max-w-xl border-gray-400 dark:border-gray-500 hover:border-gray-600 hover:dark:border-gray-300"
+      className="mx-2 border bg-[#E5F6FE] dark:bg-black rounded px-2 py-2 max-w-xl border-gray-400 dark:border-gray-500 hover:border-gray-600 hover:dark:border-gray-300"
     >
       <div className="flex-col">
         <h2 className="text-2xl font-bold sans text-gray-900 dark:text-gray-100">
@@ -98,9 +97,9 @@ const LockWalletCard: NextPage = () => {
             </div>
           </div>
 
-          <p className="text-md text-justify text-gray-400 dark:text-gray-500">
-            Kryptik does not store your password, so it is up to you to store
-            your password properly.
+          <p className="text-md text-gray-400 dark:text-gray-500">
+            SWORD does not store your password, so it is up to you to store your
+            password properly.
           </p>
           <div className="my-4 text-right float-right">
             <button

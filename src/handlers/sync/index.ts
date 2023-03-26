@@ -3,9 +3,8 @@ import HDSeedLoop, { NetworkFromTicker } from "hdseedloop";
 import { createShareOnDb, getRemoteShare } from "../../helpers/shares";
 import { createTempSyncKey, getTempSyncKey } from "../../helpers/sync";
 import { splitString } from "../../helpers/utils";
-import { IWallet } from "../../models/KryptikWallet";
 import { UserDB } from "../../models/user";
-import { createHashCode, decryptText, encryptText } from "../crypto";
+import { createHashCode } from "../crypto";
 import {
   createVault,
   createVaultName,
