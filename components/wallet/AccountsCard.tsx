@@ -27,14 +27,14 @@ const AccountsCard: NextPage = () => {
           {!loadingWallet && walletStatus == WalletStatus.Connected && (
             <div className="flex flex-col space-y-2 mx-auto">
               {networksToShow.map((n) => (
-                <NetworkAddress networkDb={n} />
+                <NetworkAddress networkDb={n} key={n.fullName} />
               ))}
             </div>
           )}
           {loadingWallet && (
             <div className="flex flex-col space-y-2 mx-auto">
               {[1, 2, 3, 4, 5, 6].map((n) => (
-                <NetworkAddressLoader />
+                <NetworkAddressLoader key={n} />
               ))}
             </div>
           )}
