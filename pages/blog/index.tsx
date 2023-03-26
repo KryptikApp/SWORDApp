@@ -14,7 +14,9 @@ type Props = {
 export default function BlogHome({ allDocs }: Props) {
   const [showAll, setShowAll] = useState(true);
   // get the most recent blog post
-  const mostRecentDoc: DocType = allDocs[0];
+  // overriden to be 'sword' post
+  const mostRecentDoc: DocType =
+    allDocs.find((d) => d.slug.toLowerCase() == "sword") || allDocs[0];
   // most recent docs that aren't the last posted doc
   const freshDocs: DocType[] = allDocs.slice(1, 4);
   const baseBlogUrl = "/blog/";

@@ -2,10 +2,10 @@
 title: "Guide"
 oneLiner: "Public-private key pairs give everyone access to privacy and ownership."
 image: "/blog/key.png"
-lastUpdate: "2022-3-25"
+lastUpdate: "2023-3-25"
 category: "Technology"
 contributorId: "jett"
-tags: ["cryptography", "internet", "computers"]
+tags: ["developers", "tutorial"]
 ---
 
 Most wallets back up your seed phrase with a cloud provider like Google Drive or iCloud. However, while backups are encrypted, the encryption key is often a user-generated password. This system is insecure, given the widespread reuse of low-entropy passwords across the internet.
