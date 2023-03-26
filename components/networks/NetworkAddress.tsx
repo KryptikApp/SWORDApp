@@ -1,9 +1,9 @@
 import { NetworkDb } from "@prisma/client";
 import { Network, truncateAddress } from "hdseedloop";
 import { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { AiOutlineCopy } from "react-icons/ai";
+import { AiOutlineCheckCircle, AiOutlineCopy } from "react-icons/ai";
 import { networkFromNetworkDb } from "../../src/helpers/utils/networkUtils";
 import { useKryptikAuthContext } from "../KryptikAuthProvider";
 
@@ -27,6 +27,13 @@ const NetworkAddress: NextPage<Props> = (props) => {
     }
     toast.success("Address copied.");
   };
+
+  useEffect(() => {
+    if (!isCopied) return;
+    setInterval(() => {
+      setIsCopied(false);
+    }, 2000);
+  }, [isCopied]);
 
   return (
     <div
@@ -65,7 +72,11 @@ const NetworkAddress: NextPage<Props> = (props) => {
                 }}
                 onClick={handleIsCopiedToggle}
               >
-                <AiOutlineCopy size={20} />
+                {isCopied ? (
+                  <AiOutlineCheckCircle size={20} />
+                ) : (
+                  <AiOutlineCopy size={20} />
+                )}
               </div>
             </div>
           </div>
