@@ -1,7 +1,6 @@
 import { KryptikFetch } from "../../kryptikFetch";
 import { NetworkDb } from "../../services/models/network";
 import { TokenDb } from "../../services/models/token";
-import { PricesDict } from "../coinGeckoHelper";
 
 export async function fetchNetworks(): Promise<NetworkDb[] | null> {
   // try to fetch networks from db
@@ -51,25 +50,5 @@ export function getNetworkChainId(network: NetworkDb): number {
     return idAsNumber;
   } catch (e) {
     return network.chainId;
-  }
-}
-
-export async function getAllPrices(): Promise<PricesDict | null> {
-  // try to fetch tokens from db
-  try {
-    const res = await KryptikFetch("/api/prices/all", {
-      method: "POST",
-      timeout: 8000,
-      headers: { "Content-Type": "application/json" },
-    });
-    const pricesDict: PricesDict | null | undefined = res.data.prices;
-    if (res.status != 200 || !pricesDict) {
-      console.warn("Unable to fetch prices.");
-      console.log(res.data.msg);
-      return null;
-    }
-    return pricesDict;
-  } catch (e) {
-    return null;
   }
 }
