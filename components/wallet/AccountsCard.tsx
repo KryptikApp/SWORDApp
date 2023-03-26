@@ -22,7 +22,9 @@ const AccountsCard: NextPage = () => {
         <p className="text-2xl font-semibold">Accounts</p>
         <Divider />
         <div
-          className={`relative overflow-y-auto max-h-[60vh] no-scrollbar rounded-lg border mx-2`}
+          className={`relative overflow-y-auto max-h-[60vh] no-scrollbar rounded-lg ${
+            walletStatus == WalletStatus.Connected && "border"
+          }  mx-2`}
         >
           {!loadingWallet && walletStatus == WalletStatus.Connected && (
             <div className="flex flex-col space-y-2 mx-auto">
@@ -39,6 +41,9 @@ const AccountsCard: NextPage = () => {
             </div>
           )}
         </div>
+        {!loadingWallet && walletStatus == WalletStatus.OutOfSync && (
+          <p>Sync wallet to begin.</p>
+        )}
         {!loadingWallet && walletStatus == WalletStatus.Connected && (
           <div className="mt-6">
             <AccountActions />
