@@ -211,7 +211,7 @@ const Distributor: NextPage = () => {
         break;
       }
       case EnumProgress.Done: {
-        router.push("../wallet");
+        router.push("/");
         break;
       }
       default: {
