@@ -1,10 +1,20 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { useEffect } from "react";
+import "highlight.js/styles/github-dark-dimmed.css";
+import { load, trackPageview } from "fathom-client";
+
 import Layout from "../components/Layout";
 import { KryptikAuthProvider } from "../components/KryptikAuthProvider";
 import { KryptikThemeProvider } from "../components/ThemeProvider";
-import { useEffect } from "react";
-import "highlight.js/styles/github-dark-dimmed.css";
+import { Router } from "next/router";
+
+// Record a pageview when route changes
+Router.events.on("routeChangeComplete", (as, routeProps) => {
+  if (!routeProps.shallow) {
+    trackPageview();
+  }
+});
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const handleOffline = function () {
@@ -23,6 +33,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
     // on page load... add offline handler to DOM
     addOfflineHandler();
+    load("UECUDUKZ", {
+      includedDomains: ["sword.kryptik.app"],
+    });
   }, []);
   return (
     <KryptikAuthProvider>
