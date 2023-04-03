@@ -11,7 +11,9 @@ type Props = {
 const RecentDocCard = ({ doc, baseUrl }: Props) => {
   const urlBase = `${baseUrl}[slug]`;
   const urlAs = `${baseUrl}${doc.slug}`;
-  const formattedDate = new Date(doc.lastUpdate).toDateString();
+  const formattedDate = new Date(
+    doc.lastUpdate.replace(/-/g, "/")
+  ).toDateString();
   return (
     <div className="mx-auto w-full">
       <div className="rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white border border-1 border-gray-500 hover:border-blue-500 min-h-[300px] rounded md:min-h-[500px]">
