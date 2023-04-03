@@ -169,7 +169,7 @@ describe("Test Seedloop Features", () => {
     });
   });
 
-  it("signs EVM transactions", async () => {
+  it("signs EVM transactions recoverably", async () => {
     for (const m of twelveOrMoreWordMnemonics) {
       const seedloop = new HDSeedLoop({ mnemonic: m });
       const networkEth: Network = NetworkFromTicker("eth");
@@ -191,23 +191,22 @@ describe("Test Seedloop Features", () => {
           networkEth
         );
         expect(signedTx.evmFamilyTx).toBeDefined();
-        // TODO: identify + patch ethers verification bug
-        // if (!signedTx.evmFamilyTx) return;
-        // const parsed = parse(signedTx.evmFamilyTx);
-        // console.log(signedTx.evmFamilyTx);
-        // const sig = {
-        //   r: parsed.r as string,
-        //   s: parsed.s as string,
-        //   v: parsed.v as number,
-        // };
-        // // workaround ethers object key issue
-        // if (tx.from) {
-        //   tx.from = address;
-        // }
-        // const digest = keccak256(serialize(<UnsignedTransaction>tx));
-        // let recoveredAddress = recoverAddress(digest, sig).toLowerCase();
-        // expect(recoveredAddress).toEqual(address);
-        // expect(parsed.from?.toLowerCase()).toEqual(address.toLowerCase());
+        if (!signedTx.evmFamilyTx) return;
+        const parsed = parse(signedTx.evmFamilyTx);
+        console.log(signedTx.evmFamilyTx);
+        const sig = {
+          r: parsed.r as string,
+          s: parsed.s as string,
+          v: parsed.v as number,
+        };
+        // workaround ethers object key issue
+        if (tx.from) {
+          tx.from = address;
+        }
+        const digest = keccak256(serialize(<UnsignedTransaction>tx));
+        let recoveredAddress = recoverAddress(digest, sig).toLowerCase();
+        expect(recoveredAddress).toEqual(address);
+        expect(parsed.from?.toLowerCase()).toEqual(address.toLowerCase());
       }
     }
   });
@@ -233,7 +232,7 @@ describe("Test Seedloop Features", () => {
     );
   });
 
-  it("signs messages with EVM networks", () => {
+  it("signs messages recoverably with EVM networks", () => {
     validDerivations.map((m) => {
       const seedloop = new HDSeedLoop({ mnemonic: m.mnemonic });
       const networkEth: Network = NetworkFromTicker("eth");
@@ -241,13 +240,11 @@ describe("Test Seedloop Features", () => {
       for (const address of addresses) {
         const message = "recoverThisMessage";
         const sig = seedloop.signMessage(address, message, networkEth);
-        expect(sig).toBeDefined();
-        // TODO: identify + patch ethers verification bug
-        // let recoveredAddress = recoverAddress(
-        //   hashMessage(message),
-        //   sig
-        // ).toLowerCase();
-        // expect(recoveredAddress).toEqual(address);
+        let recoveredAddress = recoverAddress(
+          hashMessage(message),
+          sig
+        ).toLowerCase();
+        expect(recoveredAddress).toEqual(address);
       }
     });
   });
@@ -264,6 +261,33 @@ describe("Test Seedloop Features", () => {
       expect(unlocked).toBeTruthy();
       mnemonic = seedloop.getSeedPhrase();
       expect(mnemonic).toEqual(originalMnemonic);
+    }
+  });
+
+  it("locks and unlocks seedloop. can then create proper signature.", () => {
+    const originalMnemonic = validMnemonics[0];
+    let seedloop = new HDSeedLoop({ mnemonic: validMnemonics[0] });
+    for (const passphrase of testPassphrases) {
+      seedloop.addPassword(passphrase);
+      seedloop.lock();
+      let mnemonic = seedloop.getSeedPhrase();
+      expect(mnemonic).toBeNull();
+      let unlocked = seedloop.unlock(passphrase);
+      expect(unlocked).toBeTruthy();
+      mnemonic = seedloop.getSeedPhrase();
+      expect(mnemonic).toEqual(originalMnemonic);
+      // test signature after unlock
+      const networkEth = NetworkFromTicker("eth");
+      const addresses = seedloop.getAddresses(networkEth);
+      for (const address of addresses) {
+        const message = "recoverThisMessage";
+        const sig = seedloop.signMessage(address, message, networkEth);
+        let recoveredAddress = recoverAddress(
+          hashMessage(message),
+          sig
+        ).toLowerCase();
+        expect(recoveredAddress).toEqual(address);
+      }
     }
   });
 
