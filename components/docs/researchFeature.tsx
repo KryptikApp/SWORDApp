@@ -12,7 +12,7 @@ const ResearchFeature = ({ doc }: Props) => {
   const urlAs = `/research/${doc.slug}`;
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="max-w-3xl rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white py-6 px-4 outline outline-1 outline-slate-400 dark:outline-slate-700 hover:outline-2 hover:outline-blue-500 hover:dark:outline-blue-500">
+      <div className="max-w-3xl rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white py-6 px-4 border border-1 border-slate-400 dark:border-slate-700 hover:border-2 hover:border-blue-500 hover:dark:border-blue-500">
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-col space-y-4">
             <div className="">

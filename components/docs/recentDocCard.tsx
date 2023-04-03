@@ -14,7 +14,7 @@ const RecentDocCard = ({ doc, baseUrl }: Props) => {
   const formattedDate = new Date(doc.lastUpdate).toDateString();
   return (
     <div className="mx-auto w-full">
-      <div className="rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white outline outline-1 outline-gray-500 hover:outline-blue-500 min-h-[300px] md:min-h-[500px]">
+      <div className="rounded-lg bg-[#F2FBFE] dark:bg-gray-900 text-black dark:text-white border border-1 border-gray-500 hover:border-blue-500 min-h-[300px] rounded md:min-h-[500px]">
         <div className="flex flex-col">
           {doc.image && (
             <img
